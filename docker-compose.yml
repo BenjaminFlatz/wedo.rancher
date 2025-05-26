@@ -21,8 +21,11 @@ services:
   rancher:
     image: rancher/rancher:latest
     container_name: rancher
+    hostname: rancher
     restart: unless-stopped
     privileged: true
+    networks:
+      - rancher
 
 networks:
     rancher:
