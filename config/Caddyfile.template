@@ -1,0 +1,8 @@
+{
+    email admin@example.com   # Set your email for notifications
+    admin off  # Disable admin API for security
+}
+
+example.com {
+    reverse_proxy rancher:80
+}
