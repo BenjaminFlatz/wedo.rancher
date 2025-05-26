@@ -1,0 +1,32 @@
+version: "3.8"
+services:
+  caddy:
+    image: caddy:latest
+    container_name: caddy
+    restart: unless-stopped
+    networks:
+      - rancher
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./config/Caddyfile:/etc/caddy/Caddyfile
+      #- ./data/caddy/site:/srv
+      - caddy-data:/data
+      - caddy-config:/config
+    depends_on:
+      - rancher
+
+  rancher:
+    image: rancher/rancher:latest
+    container_name: rancher
+    restart: unless-stopped
+    privileged: true
+
+networks:
+    rancher:
+
+volumes:
+  caddy-data:
+  caddy-config:
